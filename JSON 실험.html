@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Toilets Visualization from GitHub JSON</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <style>
+        .chart-container {
+            width: flex; /* 컨테이너 너비를 전체 화면 너비로 설정 */
+            margin: 0 auto; /* 중앙 정렬 */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        /* Container for arranging charts side by side */
+        .content-container {
+            width: 100%; /* 전체 컨테이너의 너비를 전체 화면 너비로 설정 */
+            max-width: none; /* 최대 너비 제한 제거 */
+            display: flex;
+            flex-direction: row; /* Align horizontally */
+            align-items: center; /* Center alignment */
+            justify-content: space-around; /* Center positioning */
+            margin: 20px 0;
+            flex-wrap: wrap; /* Allow charts to wrap into two rows on smaller screens */
+        }
+        h2 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: center;
+            max-width: 400px;
+            margin: 10px 20px;
+        }
+    </style>
+</head>
+<body style="background-color: #e0f7fa;">
+    <!-- Page Title -->
+    <h1 style="text-align: center; font-size: 5em;">Public Toilets in Australia</h1>
+    <p style="font-size: 1.5em; max-width: 800px; margin: 10px auto;">Welcome to our interactive website showcasing public toilet facilities across Australia. Explore visual analyses of toilet distribution, accessibility, and amenities like baby change facilities, presented through engaging charts.</p>
+
+    <!-- Container for map chart -->
+    <div class="chart-container">
+        <h2>Toilets distribution around Australia</h2>
+        <p>Explore the spread of public toilet facilities across Australia. Each point on the map represents a toilet location, providing insights into their availability nationwide.</p>
+        <div id="dot_map"></div>
+    </div>
+
+    <!-- Container for bar chart showing number of public toilets by state -->
+    <div class="content-container">
+        <div class="chart-container">
+            <h2>Number of Public Toilets by State</h2>
+            <p>Explore how the availability of public toilets differs across Australian states. This chart illustrates both the number and distribution of facilities in each region, as well as the proportion of male, female, and unisex toilets.</p>
+            <div id="bar_chart"></div>
+        </div>
+    </div>
+
+    <!-- Container for bar chart showing key required for access to public toilets (side by side) -->
+    <div class="content-container">
+        <div class="chart-container">
+            <h2>Key Required for Access to Public Toilets</h2>
+            <p>Discover which public toilets require a key for access and how their availability differs by region. This information is essential for planning accessibility.</p>
+            <div id="key_required_chart"></div>
+        </div>
+    </div>
+
+    <!-- Container for stacked bar chart showing baby change availability by facility type (side by side) -->
+    <div class="content-container">
+        <div class="chart-container">
+            <h2>Facility Type and Babychange Availability</h2>
+            <p>This shows the availability of baby change facilities by facility type. This information is particularly useful for parents and caregivers traveling with young children.</p>
+            <div id="babychange_chart"></div>
+        </div>
+    </div>
+
+    <!-- Container for donut chart showing proportion of accessible public toilets by state (side by side) -->
+    <div class="content-container">
+        <div class="chart-container">
+            <h2>Accessible Public Toilets by State</h2>
+            <p>This provides a visual representation of the proportion of accessible public toilets by state.</p>
+            <div id="donut_chart"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Embed Dot Map from GitHub JSON file with specific width and height
+        vegaEmbed('#dot_map', "https://raw.githubusercontent.com/3179Jae/Public-Toilets-in-Australia/refs/heads/main/1%20Map%201st%20.vega", {
+            width: 1000,
+            height: 500
+        }).catch(console.error);
+
+        // Embed bar chart showing number of public toilets by state from GitHub JSON file with specific width and height
+        vegaEmbed('#bar_chart', "https://raw.githubusercontent.com/3179Jae/Public-Toilets-in-Australia/refs/heads/main/2%20Stacked%20bar%20.vega", {
+            width: 600,
+            height: 500
+        }).catch(console.error);
+
+        // Embed Key Required Chart from GitHub JSON file with specific width and height
+        vegaEmbed('#key_required_chart', "https://raw.githubusercontent.com/3179Jae/Public-Toilets-in-Australia/refs/heads/main/3%20Barchart%20Key%20.vega", {
+            width: 600,
+            height: 400
+        }).catch(console.error);
+
+        // Embed Babychange Availability Bar Chart from GitHub JSON file with specific width and height
+        vegaEmbed('#babychange_chart', "https://raw.githubusercontent.com/3179Jae/Public-Toilets-in-Australia/refs/heads/main/4%20Bar%20Baby%20Change%20availability%20.vega", {
+            width: 600,
+            height: 400
+        }).catch(console.error);
+
+        // Embed donut chart from GitHub JSON file with specific width and height
+        vegaEmbed('#donut_chart', "https://raw.githubusercontent.com/3179Jae/Public-Toilets-in-Australia/refs/heads/main/5%20Donut%20Key%20required.vega", {
+            width: 500,
+            height: 400
+        }).catch(console.error);
+    </script>
+</body>
+</html>
